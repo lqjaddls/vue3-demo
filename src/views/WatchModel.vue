@@ -5,12 +5,13 @@ const model = ref({ name: 'Alice', email: '', age: 10 });
 const logs = ref([]);
 const deep = ref(true);
 const immediate = ref(false);
-const flush = ref('post'); // 默认值为 'post'
+const flush = ref('pre'); // 默认值为 'post'
 
 let stopWatch;
 
 watchEffect(() => {
   if (stopWatch) stopWatch();
+  console.log(`watchEffect-----${deep.value}-----${immediate.value}-----${flush.value}`);
   stopWatch = watch(
     model,
     (newVal, oldVal) => {
